@@ -1,18 +1,40 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home container">
+    <h2>TY Chat-App</h2>
+    <div v-if="member">
+      <SignUp/>
+      <p>Click to <span @click="member=false">Register</span></p>
+    </div>
+    <div v-else>
+      <SignIn/>
+      <p>Click to <span @click="member=true">Sign Up</span></p>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SignUp from '../components/SignUp.vue'
+import SignIn from '../components/SignIn.vue'
+import { ref } from 'vue' 
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    SignUp,
+    SignIn
+    
+  },
+  setup() {
+    const member = ref(true);
+
+    return {member}
   }
+  
 }
 </script>
+<style scoped>
+  .home{
+    text-align: left;
+    padding: 20px 50px;
+  }
+</style>

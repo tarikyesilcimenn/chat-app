@@ -16,7 +16,6 @@ export default {
         const userName = ref('');
         const email = ref('');
         const password = ref('');
-
         const { errors, signUp} = useRegister();
         const register = async () => {
             // console.log("userName : " + userName.value , "email : " + email.value, "password : " + password.value);
@@ -24,7 +23,7 @@ export default {
             // console.log(error);
         }
 
-        return {userName, email, password, register}
+        return {userName, email, password, register, errors}
     }
 }
 </script>

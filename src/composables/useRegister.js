@@ -7,6 +7,9 @@ const errors = ref(null);
 const signUp = async (email, password, userName) => {
     errors.value = null;
     try {
+        if(userName.trim()===''){
+            throw new Error('Username cannot be empty');
+        }
         const res = await auth.createUserWithEmailAndPassword(email,password);
 
         if(!res) {

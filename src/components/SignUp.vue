@@ -6,6 +6,9 @@
     <input type="password" placeholder="Please enter your password adress:" v-model="password"/>
     <button>Sign Up</button>
   </form>
+  <div class="error">
+    {{errors}}
+  </div>
 </template>
 
 <script>

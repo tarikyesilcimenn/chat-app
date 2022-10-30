@@ -2,12 +2,12 @@
   <div class="home container">
     <h2>TY Chat-App</h2>
     <div v-if="member">
-      <SignUp/>
-      <p>Click to <span @click="member=false">Register</span></p>
+      <SignUp @register="chatStart"/>
+      <p>Click to <span @click="member=false">Sign In</span></p>
     </div>
     <div v-else>
-      <SignIn/>
-      <p>Click to <span @click="member=true">Sign Up</span></p>
+      <SignIn @login="chatStart"/>
+      <p>Click to <span @click="member=true">Register</span></p>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@
 import SignUp from '../components/SignUp.vue'
 import SignIn from '../components/SignIn.vue'
 import { ref } from 'vue' 
-
+import { useRouter } from 'vue-router'
 export default {
   name: 'HomeView',
   components: {
@@ -26,8 +26,13 @@ export default {
   },
   setup() {
     const member = ref(true);
+    const router = useRouter();
 
-    return {member}
+    const chatStart = () => {
+      router.push({name: 'ChatRoom'})
+    }
+
+    return {member, chatStart}
   }
   
 }

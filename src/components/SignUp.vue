@@ -15,7 +15,7 @@
 import { ref } from 'vue';
 import useRegister from '../composables/useRegister';
 export default {
-    setup() {
+    setup( props, context ) {
         const userName = ref('');
         const email = ref('');
         const password = ref('');
@@ -23,6 +23,9 @@ export default {
         const register = async () => {
             // console.log("userName : " + userName.value , "email : " + email.value, "password : " + password.value);
             await signUp(email.value, password.value, userName.value);
+            if(!errors.value){
+              context.emit('register')
+            }
             // console.log(error);
         }
 
